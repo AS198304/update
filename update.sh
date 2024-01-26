@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 设置下载链接
-download_url="https://codeload.github.com/MoeDove-LLC/Bird2-Config/zip/refs/tags/v1.5.0?token=BDJNIQDXHNVLDDSH6S2QL6TFWMDXS"
+download_url="https://codeload.github.com/MoeDove-LLC/Bird2-Config/zip/refs/tags/v1.5.0?token=BDJNIQHLSPAWE7PUNFLTZXLFWMEVE"
 
 # 设置本地解压目录
 extract_dir="Bird2-Config-1.5.0"
