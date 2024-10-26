@@ -19,7 +19,7 @@ mkdir -p "$DEST_DIR"
 for FILE in "${FILES[@]}"; do
   echo "Downloading $FILE..."
   
-  curl -L "https://AS44324:$GITHUB_TOKEN@raw.githubusercontent.com/$REPO/$BRANCH/node/functions/$FILE>" \
+  curl -L "https://AS44324:$GITHUB_TOKEN@raw.githubusercontent.com/$REPO/$BRANCH/node/functions/$FILE" \
        -o "$DEST_DIR/$FILE"
   
   if [ $? -eq 0 ]; then
