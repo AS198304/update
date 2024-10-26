@@ -19,8 +19,7 @@ mkdir -p "$DEST_DIR"
 for FILE in "${FILES[@]}"; do
   echo "Downloading $FILE..."
   
-  curl -H "Authorization: token $GITHUB_TOKEN" -L \
-       "https://raw.githubusercontent.com/$REPO/$BRANCH/node/functions/$FILE" \
+  curl -L "https://AS44324:$GITHUB_TOKEN@raw.githubusercontent.com/$REPO/$BRANCH/node/functions/$FILE>" \
        -o "$DEST_DIR/$FILE"
   
   if [ $? -eq 0 ]; then
