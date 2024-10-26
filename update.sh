@@ -20,7 +20,7 @@ for FILE in "${FILES[@]}"; do
   echo "Downloading $FILE..."
   
   curl -H "Authorization: token $GITHUB_TOKEN" -L \
-       "https://raw.githubusercontent.com/refs/heads/$REPO/$BRANCH/node/functions/$FILE" \
+       "https://raw.githubusercontent.com/$REPO/$BRANCH/node/functions/$FILE" \
        -o "$DEST_DIR/$FILE"
   
   if [ $? -eq 0 ]; then
