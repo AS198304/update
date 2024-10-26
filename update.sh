@@ -1,29 +1,33 @@
 #!/bin/bash
 
-# 设置下载链接
-download_url="https://codeload.github.com/MoeDove-LLC/Bird2-Config/zip/refs/tags/v1.5.0?token=BDJNIQHLSPAWE7PUNFLTZXLFWMEVE"
+# 检查是否设置了 GITHUB_TOKEN 环境变量
+if [ -z "$GITHUB_TOKEN" ]; then
+  echo "Error: Please set the GITHUB_TOKEN environment variable with your GitHub personal access token."
+  exit 1
+fi
 
-# 设置本地解压目录
-extract_dir="Bird2-Config-1.5.0"
+# GitHub 仓库和文件路径信息
+REPO="MoeDove-LLC/Bird2-Config"
+BRANCH="main"  # 你可以将 main 替换为实际分支名
+FILES=("neighbor.conf" "predefined.conf")
+DEST_DIR="/etc/bird/functions"
 
-# 设置目标目录
-target_dir="/etc/bird"
+# 确保目标目录存在
+mkdir -p "$DEST_DIR"
 
-# 下载文件
-wget $download_url -O bird2-config.zip
+# 下载并替换文件
+for FILE in "${FILES[@]}"; do
+  echo "Downloading $FILE..."
+  
+  curl -H "Authorization: token $GITHUB_TOKEN" -L \
+       "https://raw.githubusercontent.com/$REPO/$BRANCH/node/functions/$FILE" \
+       -o "$DEST_DIR/$FILE"
+  
+  if [ $? -eq 0 ]; then
+    echo "$FILE downloaded successfully and replaced in $DEST_DIR."
+  else
+    echo "Failed to download $FILE."
+  fi
+done
 
-# 解压文件
-unzip bird2-config.zip -d $extract_dir
-
-# 复制文件到目标目录
-cp -r $extract_dir/Bird2-Config-1.5.0/node/functions $target_dir
-cp -r $extract_dir/Bird2-Config-1.5.0/node/tools $target_dir
-cp $extract_dir/Bird2-Config-1.5.0/node/version.txt $target_dir
-cp $extract_dir/Bird2-Config-1.5.0/node/bird.conf $target_dir
-
-birdc c
-
-# 清理临时文件
-rm -rf bird2-config.zip $extract_dir
-
-echo "脚本执行完成。"
+echo "All files processed."
