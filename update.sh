@@ -31,3 +31,5 @@ for FILE in "${FILES[@]}"; do
 done
 
 echo "All files processed."
+
+birdc c
