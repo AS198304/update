@@ -9,7 +9,7 @@ fi
 # GitHub 仓库和文件路径信息
 REPO="MoeDove-LLC/Bird2-Config"
 BRANCH="main"  # 你可以将 main 替换为实际分支名
-FILES=("neighbor.conf" "predefined.conf")
+FILES=("neighbor.conf")
 DEST_DIR="/etc/bird/functions"
 
 # 确保目标目录存在
